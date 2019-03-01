@@ -1,0 +1,20 @@
+﻿
+@{
+    Layout = null;
+}
+@using QuanLyBanHang.Models;
+@model Category
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Chi tiết danh mục</title>
+</head>
+<body>
+    <div> 
+        Bạn đang xem chi tiết danh mục @Model.CatName có mã là @Model.CatID
+    </div>
+    <div><a href="@Url.Action("Index","Category")">Quay lại danh sách</a></div>
+</body>
+</html>

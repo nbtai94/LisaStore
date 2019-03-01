@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+@using QuanLyBanHang.Models;
+@model List<Category>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Danh sách danh mục</title>
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+</head>
+<body>
+    <div> 
+    
+    </div>
+    <table border="1">
+        <tr>
+            <td>ID</td>
+            <td>Category</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CatID</td>
+                <td>@item.CatName</td>
+                <td><a href="@Url.Action("Detail","Category",new {id =item.CatID})">Chi tiết</a></td>
+                <td><a href="@Url.Action("Delete","Category",new {id =item.CatID})">Xóa</a></td>
+                <td><a href="@Url.Action("Edit","Category",new {id=item.CatID })">Chỉnh sửa</a></td>
+            </tr>
+        }
+        
+    </table>
+    <a href="@Url.Action("Add","Category")">Thêm mới danh mục</a>
+</body>
+</html>

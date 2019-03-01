@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+@using QuanLyBanHang.Models;
+@model Category
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update</title>
+</head>
+<body>
+    <form action="@Url.Action("Update","Category")" method="post">
+        <table>
+            <tr>
+                <td>ID:</td>
+                <td><input type="text" name="CatID" readonly value="@Model.CatID" /></td>
+            </tr>
+            <tr>
+                <td>Danh mục:</td>
+                <td><input type="text" name="CatName" value="@Model.CatName"/></td>
+            </tr>
+        </table>
+        <button type="submit">
+            Đồng ý
+        </button>
+    </form>
+    <a href="@Url.Action("Index","Category")">Quay lại</a>
+</body>
+</html>

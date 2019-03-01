@@ -1,0 +1,9 @@
+﻿@using QuanLyBanHang.Models;
+@model List<Category>
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("ByCat","Product",new {id=item.CatID })" class="list-group-item">@item.CatName</a>
+    }  
+</div>

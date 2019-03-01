@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@section view_title{
+   Đăng ký thành viên
+}
+@section css{
+<link href="~/Content/DatePicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+ <style type="text/css">
+     label{
+         font-weight:normal !important;
+     }
+</style>
+}
+@section js{
+<script src="~/Content/jquery-validation-1.19.0/dist/jquery.validate.min.js"></script>    
+<script src="~/Content/DatePicker/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true,
+    });
+
+    $("#frmRegister").validate({
+        rules: {
+            Username: {
+                required: true,
+            },
+            Password: {
+                required: true,
+                minlength:6,
+            },
+            Confirm: {
+                equalTo: '#txtPassword'
+            },
+            Name: {
+                required: true,
+            },
+            Email: {
+                required: true,
+                email:true,
+            },
+            DOB: {
+                required: true,
+            },
+
+        },
+        messages:{
+            Username:{
+                required:'Vui lòng nhập Username'
+            },
+            Password:{
+                required: 'Vui lòng nhập mật khẩu',
+                minlength:'Mật khẩu phải dài ít nhất 6 kí tự',
+            },
+            Confirm:{
+                equalTo:'Mật khẩu nhâp lại chưa khớp'
+            },
+            Name:{
+                required: 'Vui lòng nhập họ tên',
+            },
+            Email: {
+                required: 'Vui lòng nhập email',
+                email:'Email không đúng định dạng'
+            },
+            DOB: {
+                required: 'Vui lòng chọn ngày sinh'
+            },
+    }
+    });
+</script>
+}
+@if (ViewBag.ErrorMsg != null)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> @ViewBag.ErrorMsg
+    </div>
+}
+
+<form class="form-horizontal" method="post" action="" id="frmRegister">
+    <div class="form-group">
+        <label for="txtUsername" class="col-sm-2 control-label">Tên đăng nhập:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtUsername" placeholder="Tên đăng nhập" name="Username">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtPassword" class="col-sm-2 control-label">Mật khẩu:</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="Password">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtConfirm" class="col-sm-2 control-label">Nhập lại:</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="txtConfirm" placeholder="Nhập lại" name="Confirm">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtName" class="col-sm-2 control-label">Họ tên:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtName" placeholder="Tên" name="Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtEmail" class="col-sm-2 control-label">Email:</label>
+        <div class="col-sm-4">
+            <input type="email" class="form-control" id="txtEmail" placeholder="Email" name="Email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtDOB" class="col-sm-2 control-label">Ngày sinh:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control datepicker" id="txtDOB" placeholder="dd/mm/yyyy" name="DOB">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-check"></i> 
+            Đăng ký
+            </button>
+        </div>
+    </div>
+</form>
+
