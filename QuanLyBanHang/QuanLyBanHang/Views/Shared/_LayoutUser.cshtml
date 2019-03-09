@@ -58,7 +58,12 @@
                     }
                     else
                     {
-
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-shopping-cart"></i>
+                                Giỏ hàng có @CurrentContext.GetCart().Items.Count sản phẩm
+                            </a>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">@CurrentContext.GetCurUser().f_Username<span class="caret"></span></a>
                                 <ul class="dropdown-menu">

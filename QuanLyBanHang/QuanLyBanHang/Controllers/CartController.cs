@@ -28,7 +28,7 @@ namespace QuanLyBanHang.Controllers
                 Product = pro
             };
             CurrentContext.GetCart().AddItem(item);
-            return View();
+            return RedirectToAction("Detail","Product",new {id=proId });
         }
     }
 }

@@ -52,7 +52,7 @@ namespace QuanLyBanHang.Helpers
         {
             HttpContext.Current.Session["isLogin"] = 0;
             HttpContext.Current.Session["user"] = null;
-            HttpContext.Current.Request.Cookies["userID"].Expires = DateTime.Now.AddDays(-1);
+            //HttpContext.Current.Request.Cookies["userID"].Expires = DateTime.Now.AddDays(-1);
 
 
         }
