@@ -48,7 +48,7 @@ else
 
      if (CurrentContext.IsLogged())
       {
-        <form action="" method="post" class="form-horizontal" id="frmAddItem">
+        <form action="@Url.Action("Add","Cart")" method="post" class="form-horizontal" id="frmAddItem">
             <div class="form-group">
                 <div class="col-sm-4">
                     <input type="hidden" id="txtP" name="proId" value="@Model.ProID" />

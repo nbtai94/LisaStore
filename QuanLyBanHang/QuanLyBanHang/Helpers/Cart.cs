@@ -1,5 +1,6 @@
 ﻿using QuanLyBanHang.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace QuanLyBanHang.Helpers
 {
@@ -10,6 +11,10 @@ namespace QuanLyBanHang.Helpers
         public Cart()
         {
             this.Items = new List<CartItem>();
+        }
+        public int SumQ()
+        {
+           return Items.Sum(i => i.Quantity);
         }
 
         public void AddItem(CartItem item)
