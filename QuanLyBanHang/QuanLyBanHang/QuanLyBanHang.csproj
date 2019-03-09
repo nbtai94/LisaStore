@@ -394,6 +394,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\banner\banner-1.jpg" />
+    <Content Include="Images\banner\banner-2.jpg" />
+    <Content Include="Images\banner\banner-3.jpg" />
     <Content Include="Models\QLBH.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QLBH.edmx</DependentUpon>
