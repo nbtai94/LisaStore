@@ -210,6 +210,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Cart.cs" />
     <Compile Include="Helpers\CurrentContext.cs" />
     <Compile Include="Helpers\StringUtils.cs" />
     <Compile Include="Models\Category.cs">
@@ -457,6 +459,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\bootstrap-touchspin-master\" />
     <Folder Include="Content\DatePicker\locales\" />
     <Folder Include="Images\sp\16\" />
     <Folder Include="Images\sp\30\" />
@@ -465,6 +468,7 @@
     <Folder Include="Images\sp\36\" />
     <Folder Include="Images\sp\5\" />
     <Folder Include="Images\sp\7\" />
+    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

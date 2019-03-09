@@ -36,6 +36,18 @@ namespace QuanLyBanHang.Helpers
         {
             return (User)HttpContext.Current.Session["user"];
         }
+        public static Cart GetCart()
+        {
+            var ret = (Cart)HttpContext.Current.Session["cart"];
+            if (ret == null)
+            {
+                ret = new Cart();
+                HttpContext.Current.Session["cart"] = ret;
+            }
+            return ret;
+           
+
+        }
         public static void Destroy()
         {
             HttpContext.Current.Session["isLogin"] = 0;

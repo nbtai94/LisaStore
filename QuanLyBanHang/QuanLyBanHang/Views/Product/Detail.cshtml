@@ -7,6 +7,20 @@
 @section View_title{
     Chi tiết sản phẩm
 }
+@section css{
+<link href="~/Content/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+
+}
+@section js{
+<script src="~/Content/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
+<script>
+    $('#txtQ').TouchSpin({
+        min: 1,
+        max:50,
+        verticalbuttons:true
+    });
+</script>
+}
 @if (Model == null)
 {
     <text>Sản phẩm không tồn tại</text>
@@ -30,5 +44,20 @@ else
              <h4>@Html.Raw(Model.FullDes)</h4>
          </div>
      </div>
+    <form action="" method="post" class="form-horizontal" id="frmAddItem">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input type="hidden" id="txtP" name="proId" value="@Model.ProID" />
+                <div class="input-group" style="margin-left:24px;">
+                    <input id="txtQ" name="quantity" type="text" class="form-control" value="1"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-cart-plus"></i> Mua ngay
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
 }
 
