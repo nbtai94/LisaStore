@@ -19,7 +19,18 @@ namespace QuanLyBanHang.Helpers
 
         public void AddItem(CartItem item)
         {
-            this.Items.Add(item);
+            var eItem = this.Items
+                 .Where(i => i.Product.ProID == item.Product.ProID)
+                 .FirstOrDefault();
+            if (eItem != null)
+            {
+                eItem.Quantity += item.Quantity;
+
+            }
+            else
+            {
+                Items.Add(item);
+            }
         }
     }
 

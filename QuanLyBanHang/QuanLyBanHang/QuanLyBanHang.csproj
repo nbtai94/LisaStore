@@ -456,6 +456,7 @@
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -468,7 +469,6 @@
     <Folder Include="Images\sp\36\" />
     <Folder Include="Images\sp\5\" />
     <Folder Include="Images\sp\7\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

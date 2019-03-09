@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using QuanLyBanHang.Models;
 using QuanLyBanHang.Helpers;
+using QuanLyBanHang.Filter;
 
 namespace QuanLyBanHang.Controllers
 {
@@ -12,10 +13,12 @@ namespace QuanLyBanHang.Controllers
     public class CartController : Controller
     {
         QuanLyBanHangEntities _db = new QuanLyBanHangEntities();
+        [CheckLogin]
         // GET: Cart
         public ActionResult Index()
         {
-            return View();
+            var cart = CurrentContext.GetCart();
+            return View(cart.Items);
         }
         // POST: Cart/Add
         [HttpPost]
