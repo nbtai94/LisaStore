@@ -35,13 +35,13 @@ else
                             <h4 class="text-warning">@item.ProName</h4>
                             <h4 class="text-danger">Giá: @string.Format("{0:N0}", item.Price)</h4>
                             <h4>Còn lại: @item.Quantity</h4>
-                            @if (item.TinyDes.Length < 35)
+                            @if (item.TinyDes.Length < 30)
                             {
                                 <p>@item.TinyDes</p>
                             }
                             else
                             {
-                                <p>@item.TinyDes.Substring(0,35)...</p>
+                                <p>@item.TinyDes.Substring(0,30)...</p>
                             }
 
                             <p>
