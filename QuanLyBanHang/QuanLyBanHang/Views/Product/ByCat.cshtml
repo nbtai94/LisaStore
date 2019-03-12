@@ -10,9 +10,10 @@
 
 
 </style>
-
+@using QuanLyBanHang.Helpers;
 @using QuanLyBanHang.Models;
 @model List<Product>
+
 
 @section View_title{
     Danh sách sản phẩm
@@ -25,6 +26,10 @@
 }
 else
 {
+    <form id="frmAddToCart" method="post" action=""> 
+        <input type="text" id="txtP" name="proId" value="" />
+        <input type="text" id="txtQ" name="quantity" value="1"/>
+    </form>
     <div class="row">
             @foreach (var item in Model)
             {
@@ -45,8 +50,16 @@ else
                             }
 
                             <p>
-                                <a href="#" class="btn btn-primary" role="button"><i class="fas fa-cart-plus"></i> Đặt mua</a>
                                 <a href="@Url.Action("Detail","Product",new {id=@item.ProID })" class="btn btn-default" role="button">Chi tiết</a>
+                                @if (CurrentContext.IsLogged())
+                                {
+
+                                    <a href="javascript:;" class="btn btn-primary" role="button" data-id="@item.ProID">
+                                        <i class="fas fa-cart-plus"></i> Đặt mua
+                                    </a>
+                                }
+                               
+                               
                             </p>
                         </div>
                     </div>
