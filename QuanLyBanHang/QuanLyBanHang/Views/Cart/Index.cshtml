@@ -4,16 +4,35 @@
 @section View_title{
    Giỏ hàng của bạn
 }
-
+@section css{
+    
+<link href="~/Content/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+}
+@section js{
+    
+<script src="~/Content/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
+ <script type="text/javascript">
+     $('.numeric').TouchSpin({
+         min: 1,
+         max: 50,
+         verticalbuttons:true
+     });
+ </script>
+}
 @if (Model.Count == 0)
 {
     <text>Không có sản phẩm trong giỏ hàng</text>
 
 }
 else{
+    <form id="frmRemove" method="post" action="@Url.Action("Remove","Cart")">
+        <input id="txtRProId"  type="text" name="proId"/>
+    </form>
+
+
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-hover" >
+        <table class="table table-hover table-responsive" >
             <thead>
                 <tr>
                     <th class="col-sm-4">Sản phẩm</th>
@@ -32,14 +51,15 @@ else{
                     total += cim.Product.Price * cim.Quantity;
                     <tr>
                         <td>@cim.Product.ProName</td>
-                        <td class="text-center">@cim.Quantity</td>
+                        @*<td class="text-center">@cim.Quantity</td>*@
+                        <td class="text-center"><input class="numeric" type="text" value="@cim.Quantity"/></td>
                         <td class="text-center">@string.Format("{0:N0}", cim.Product.Price)</td>
                         <td class="text-center">@string.Format("{0:N0}", (cim.Product.Price*cim.Quantity))</td>
                         <td>
-                            <a class="btn btn-danger btn-xs" href="#">
+                            <a class="btn btn-danger btn-xs" role="button" title="Xóa" href="javascript:;" data-proid="@cim.Product ">
                                 <i class="fas fa-times"></i>
                             </a>
-                            <a href="#" class="btn btn-primary btn-xs">
+                            <a href="javascript:;" role="button" title="Cập nhật" class="btn btn-primary btn-xs">
                                 <i class="fas fa-check"></i>
                             </a>
                         </td>
