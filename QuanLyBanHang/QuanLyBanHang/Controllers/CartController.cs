@@ -33,5 +33,20 @@ namespace QuanLyBanHang.Controllers
             CurrentContext.GetCart().AddItem(item);
             return RedirectToAction("Detail","Product",new {id=proId });
         }
+        // POST: Cart/Add2
+        [HttpPost]
+        public ActionResult Add2(int proId, int quantity ,int curPage)
+        {
+            var pro = _db.Products.Where(p => p.ProID == proId).FirstOrDefault();
+
+            var item = new CartItem
+            {
+                Quantity = quantity,
+                Product = pro
+            };
+            CurrentContext.GetCart().AddItem(item);
+            return RedirectToAction("ByCat", "Product", new { id = pro.CatID ,page= curPage});
+        }
+
     }
 }

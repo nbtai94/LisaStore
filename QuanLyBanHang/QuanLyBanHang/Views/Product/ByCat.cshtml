@@ -7,13 +7,20 @@
         width:100%;
         height: 300px;
     }
-
-
 </style>
 @using QuanLyBanHang.Helpers;
 @using QuanLyBanHang.Models;
 @model List<Product>
 
+@section js {
+    <script type="text/javascript">
+        $('.addItem').on('click', function () {
+            var proId =  $(this).data('id');
+            $('#txtP').val(proId);
+            $('#frmAddToCart').submit();
+        });
+    </script>
+}
 
 @section View_title{
     Danh sách sản phẩm
@@ -26,9 +33,10 @@
 }
 else
 {
-    <form id="frmAddToCart" method="post" action=""> 
-        <input type="text" id="txtP" name="proId" value="" />
-        <input type="text" id="txtQ" name="quantity" value="1"/>
+    <form id="frmAddToCart" method="post" action="@Url.Action("Add2","Cart")"> 
+        <input type="hidden" id="txtP" name="proId" value="" />
+        <input type="hidden" id="txtQ" name="quantity" value="1"/>
+        <input type="hidden" id="txtCP" name="curPage" value="@ViewBag.CurPage" />
     </form>
     <div class="row">
             @foreach (var item in Model)
@@ -54,7 +62,7 @@ else
                                 @if (CurrentContext.IsLogged())
                                 {
 
-                                    <a href="javascript:;" class="btn btn-primary" role="button" data-id="@item.ProID">
+                                    <a href="javascript:;" class="btn btn-primary addItem" role="button" data-id="@item.ProID">
                                         <i class="fas fa-cart-plus"></i> Đặt mua
                                     </a>
                                 }
@@ -98,3 +106,4 @@ else
         </ul>
     </nav>
 }
+
