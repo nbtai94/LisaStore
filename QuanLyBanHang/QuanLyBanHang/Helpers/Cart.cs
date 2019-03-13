@@ -32,6 +32,15 @@ namespace QuanLyBanHang.Helpers
                 Items.Add(item);
             }
         }
+
+        public void RemoveItem(int proId)
+        {
+            var toDeleteItem = this.Items.Where(i => i.Product.ProID == proId).FirstOrDefault();
+            if (toDeleteItem != null)
+            {
+                this.Items.Remove(toDeleteItem);
+            }
+        }
     }
 
     public class CartItem

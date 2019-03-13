@@ -17,6 +17,11 @@
          max: 50,
          verticalbuttons:true
      });
+     $('.removeItem').on('click', function () {
+         var id = $(this).data('proid');
+         $('#txtRProId').val(id);
+         $('#frmRemove').submit()
+     });
  </script>
 }
 @if (Model.Count == 0)
@@ -26,13 +31,13 @@
 }
 else{
     <form id="frmRemove" method="post" action="@Url.Action("Remove","Cart")">
-        <input id="txtRProId"  type="text" name="proId"/>
+        <input id="txtRProId"  type="hidden" name="proid"/>
     </form>
 
 
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-hover table-responsive" >
+        <table class="table table-hover" >
             <thead>
                 <tr>
                     <th class="col-sm-4">Sản phẩm</th>
@@ -56,7 +61,7 @@ else{
                         <td class="text-center">@string.Format("{0:N0}", cim.Product.Price)</td>
                         <td class="text-center">@string.Format("{0:N0}", (cim.Product.Price*cim.Quantity))</td>
                         <td>
-                            <a class="btn btn-danger btn-xs" role="button" title="Xóa" href="javascript:;" data-proid="@cim.Product.ProID">
+                            <a class="btn btn-danger btn-xs removeItem" role="button" title="Xóa" href="javascript:;" data-proid="@cim.Product.ProID">
                                 <i class="fas fa-times"></i>
                             </a>
                             <a href="javascript:;" role="button" title="Cập nhật" class="btn btn-primary btn-xs">
