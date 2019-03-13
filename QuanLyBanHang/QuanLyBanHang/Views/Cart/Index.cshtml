@@ -56,7 +56,7 @@ else{
                         <td class="text-center">@string.Format("{0:N0}", cim.Product.Price)</td>
                         <td class="text-center">@string.Format("{0:N0}", (cim.Product.Price*cim.Quantity))</td>
                         <td>
-                            <a class="btn btn-danger btn-xs" role="button" title="Xóa" href="javascript:;" data-proid="@cim.Product ">
+                            <a class="btn btn-danger btn-xs" role="button" title="Xóa" href="javascript:;" data-proid="@cim.Product.ProID">
                                 <i class="fas fa-times"></i>
                             </a>
                             <a href="javascript:;" role="button" title="Cập nhật" class="btn btn-primary btn-xs">
