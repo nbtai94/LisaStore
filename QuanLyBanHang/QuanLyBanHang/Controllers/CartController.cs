@@ -54,6 +54,13 @@ namespace QuanLyBanHang.Controllers
             CurrentContext.GetCart().RemoveItem(proId);
             return RedirectToAction("Index","Cart");
         }
+        // POST: Cart/Update
+        [HttpPost]
+        public ActionResult Update(int proId ,int quantity)
+        {
+            CurrentContext.GetCart().UpdateItem(proId,quantity);
+            return RedirectToAction("Index", "Cart");
+        }
 
     }
 }

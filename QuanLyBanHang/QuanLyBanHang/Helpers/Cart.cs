@@ -1,6 +1,7 @@
 ﻿using QuanLyBanHang.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace QuanLyBanHang.Helpers
 {
@@ -38,9 +39,22 @@ namespace QuanLyBanHang.Helpers
             var toDeleteItem = this.Items.Where(i => i.Product.ProID == proId).FirstOrDefault();
             if (toDeleteItem != null)
             {
-                this.Items.Remove(toDeleteItem);
+                Items.Remove(toDeleteItem);
             }
         }
+
+        public void UpdateItem(int proId ,int quantity)
+        {
+            var toUpdateItem = Items
+                .Where(i => i.Product.ProID == proId)
+                .FirstOrDefault();
+            if (toUpdateItem != null)
+            {
+                toUpdateItem.Quantity = quantity;
+            }
+        }
+
+
     }
 
     public class CartItem

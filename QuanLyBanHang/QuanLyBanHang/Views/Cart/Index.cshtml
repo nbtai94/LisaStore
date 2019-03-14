@@ -22,6 +22,14 @@
          $('#txtRProId').val(id);
          $('#frmRemove').submit()
      });
+     $('.updateItem').on('click', function () {
+         var id = $(this).data('proid');
+         $('#txtUProId').val(id);
+         var q = $(this).closest('tr').find('.numeric').val();
+         $('#txtUQ').val(q);
+
+        $('#frmUpdate').submit()
+     });
  </script>
 }
 @if (Model.Count == 0)
@@ -32,6 +40,11 @@
 else{
     <form id="frmRemove" method="post" action="@Url.Action("Remove","Cart")">
         <input id="txtRProId"  type="hidden" name="proid"/>
+    </form>
+    <form id="frmUpdate" method="post" action="@Url.Action("Update","Cart")">
+        <input id="txtUProId" type="hidden" name="proId" />
+        <input id="txtUQ" type="hidden" name="quantity" />
+        
     </form>
 
 
@@ -56,15 +69,15 @@ else{
                     total += cim.Product.Price * cim.Quantity;
                     <tr>
                         <td>@cim.Product.ProName</td>
-                        @*<td class="text-center">@cim.Quantity</td>*@
-                        <td class="text-center"><input class="numeric" type="text" value="@cim.Quantity"/></td>
                         <td class="text-center">@string.Format("{0:N0}", cim.Product.Price)</td>
+                        <td class="text-center"><input class="numeric" type="text" value="@cim.Quantity"/></td>
+                        
                         <td class="text-center">@string.Format("{0:N0}", (cim.Product.Price*cim.Quantity))</td>
                         <td>
                             <a class="btn btn-danger btn-xs removeItem" role="button" title="Xóa" href="javascript:;" data-proid="@cim.Product.ProID">
                                 <i class="fas fa-times"></i>
                             </a>
-                            <a href="javascript:;" role="button" title="Cập nhật" class="btn btn-primary btn-xs">
+                            <a href="javascript:;" role="button" title="Cập nhật" class="btn btn-primary btn-xs updateItem" data-proid="@cim.Product.ProID">
                                 <i class="fas fa-check"></i>
                             </a>
                         </td>
