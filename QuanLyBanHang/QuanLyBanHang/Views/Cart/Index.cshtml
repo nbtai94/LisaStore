@@ -97,8 +97,21 @@ else{
                 </tr>
             </tfoot>
         </table>
-
+        <form method="post" id="frmCheckout" action="@Url.Action("Checkout","Cart")">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="@Url.Action("Index","Home")" class="btn btn-success" role="button">
+                        <i class="fas fa-reply"></i> Tiếp tục mua hàng
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-check"></i> Thanh toán
+                    </button>
+                </div>
+            </div>
+        </form>
+ 
     </div>
 
 </div>
+              
 }

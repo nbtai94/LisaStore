@@ -7,17 +7,20 @@ namespace QuanLyBanHang.Helpers
 {
     public class CurrentContext
     {
+        public static object Request { get; private set; }
+        public static object Response { get; private set; }
+
         public static bool IsLogged()
         {
             var flag = HttpContext.Current.Session["isLogin"];
-            if(flag==null||(int)flag==0)
+            if (flag == null || (int)flag == 0)
             {
                 //Kiểm tra thêm trong cookie
                 //nếu có cookie dùng thông tin trong cookie
                 //để tái tạo lại session
                 if (HttpContext.Current.Request.Cookies["userID"] != null)
                 {
-                    int userIdCookie = Convert.ToInt32(HttpContext.Current.Request.Cookies["userID"]);
+                    int userIdCookie = Convert.ToInt32(HttpContext.Current.Request.Cookies["userID"].Value);
                     using (QuanLyBanHangEntities _db = new QuanLyBanHangEntities())
                     {
                         var user = _db.Users
@@ -25,6 +28,7 @@ namespace QuanLyBanHang.Helpers
                             .FirstOrDefault();
                         HttpContext.Current.Session["isLoggin"] = 1;
                         HttpContext.Current.Session["user"] = user;
+                        HttpContext.Current.Response.Cookies["userId"].Expires = DateTime.Now.AddDays(-1);
                     }
                     return true;
                 }
@@ -45,16 +49,22 @@ namespace QuanLyBanHang.Helpers
                 HttpContext.Current.Session["cart"] = ret;
             }
             return ret;
-           
+
 
         }
         public static void Destroy()
         {
             HttpContext.Current.Session["isLogin"] = 0;
             HttpContext.Current.Session["user"] = null;
-            //HttpContext.Current.Request.Cookies["userID"].Expires = DateTime.Now.AddDays(-1);
 
 
+            if (HttpContext.Current.Request.Cookies["userID"] != null)
+            {
+
+                HttpContext.Current.Request.Cookies["userID"].Expires = DateTime.Now.AddDays(-1);
+
+
+            }
         }
     }
 }
