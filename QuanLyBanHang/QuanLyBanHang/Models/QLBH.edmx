@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyBanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuanLyBanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CatID" />
@@ -63,8 +63,7 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -74,6 +73,7 @@
           </Key>
           <Property Name="CatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="QuanLyBanHangModel.CategoryProduct" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -85,6 +85,8 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="QuanLyBanHangModel.ProductOrderDetail" FromRole="OrderDetail" ToRole="Product" />
+          <NavigationProperty Name="Order" Relationship="QuanLyBanHangModel.OrderOrderDetail" FromRole="OrderDetail" ToRole="Order" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -94,6 +96,8 @@
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="Total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="QuanLyBanHangModel.OrderOrderDetail" FromRole="Order" ToRole="OrderDetail" />
+          <NavigationProperty Name="User" Relationship="QuanLyBanHangModel.UserOrder" FromRole="Order" ToRole="User" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -106,6 +110,8 @@
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="CatID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="QuanLyBanHangModel.CategoryProduct" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="OrderDetails" Relationship="QuanLyBanHangModel.ProductOrderDetail" FromRole="Product" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -118,6 +124,7 @@
           <Property Name="f_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="f_DOB" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="f_Permission" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="QuanLyBanHangModel.UserOrder" FromRole="User" ToRole="Order" />
         </EntityType>
         <EntityContainer Name="QuanLyBanHangEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
@@ -125,7 +132,71 @@
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="CategoryProduct" Association="QuanLyBanHangModel.CategoryProduct">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="ProductOrderDetail" Association="QuanLyBanHangModel.ProductOrderDetail">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="OrderOrderDetail" Association="QuanLyBanHangModel.OrderOrderDetail">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="UserOrder" Association="QuanLyBanHangModel.UserOrder">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="CategoryProduct">
+          <End Type="QuanLyBanHangModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="QuanLyBanHangModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductOrderDetail">
+          <End Type="QuanLyBanHangModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="QuanLyBanHangModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderOrderDetail">
+          <End Type="QuanLyBanHangModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="QuanLyBanHangModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserOrder">
+          <End Type="QuanLyBanHangModel.User" Role="User" Multiplicity="1" />
+          <End Type="QuanLyBanHangModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="f_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

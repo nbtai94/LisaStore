@@ -14,6 +14,12 @@ namespace QuanLyBanHang.Models
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+    
         public int f_ID { get; set; }
         public string f_Username { get; set; }
         public string f_Password { get; set; }
@@ -21,5 +27,8 @@ namespace QuanLyBanHang.Models
         public string f_Email { get; set; }
         public System.DateTime f_DOB { get; set; }
         public int f_Permission { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

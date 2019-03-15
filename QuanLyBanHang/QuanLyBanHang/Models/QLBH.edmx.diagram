@@ -5,11 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5a814e477c6447a78ef3d65a04965e78" Name="Diagram1">
-        <EntityTypeShape EntityType="QuanLyBanHangModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanHangModel.OrderDetail" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanHangModel.Order" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanHangModel.Product" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanHangModel.User" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.Category" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.OrderDetail" Width="1.5" PointX="3.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.Order" Width="1.5" PointX="2.875" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.Product" Width="1.5" PointX="0.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.User" Width="1.5" PointX="5.625" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyBanHangModel.CategoryProduct" />
+        <AssociationConnector Association="QuanLyBanHangModel.ProductOrderDetail" />
+        <AssociationConnector Association="QuanLyBanHangModel.OrderOrderDetail" />
+        <AssociationConnector Association="QuanLyBanHangModel.UserOrder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

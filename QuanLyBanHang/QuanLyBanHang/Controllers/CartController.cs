@@ -61,6 +61,35 @@ namespace QuanLyBanHang.Controllers
             CurrentContext.GetCart().UpdateItem(proId,quantity);
             return RedirectToAction("Index", "Cart");
         }
+        // POST: Cart/Checkout
+        [HttpPost]
+        public ActionResult Checkout()
+        {
+            //Khởi tạo đơn hàng
+            var ord = new Order
+            {
+                OrderDate = DateTime.Now,
+                UserID = CurrentContext.GetCurUser().f_ID,
+                Total = 0,
+            };
+            var c = CurrentContext.GetCart();
+            foreach(var item in c.Items){
+                var detail = new OrderDetail
+                {
+                    ProID = item.Product.ProID,
+                    Quantity = item.Quantity,
+                    Price = item.Product.Price,
+                    Amount = item.Product.Price * item.Quantity,
+                };
+                ord.OrderDetails.Add(detail);
+                ord.Total += detail.Amount;
 
+            }
+            _db.Orders.Add(ord);
+            _db.SaveChanges();
+
+            CurrentContext.GetCart().Items.Clear();
+            return RedirectToAction("Index", "Cart");
+        }
     }
 }

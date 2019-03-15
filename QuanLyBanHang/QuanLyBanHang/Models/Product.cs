@@ -14,6 +14,12 @@ namespace QuanLyBanHang.Models
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
+    
         public int ProID { get; set; }
         public string ProName { get; set; }
         public string TinyDes { get; set; }
@@ -21,5 +27,9 @@ namespace QuanLyBanHang.Models
         public decimal Price { get; set; }
         public int CatID { get; set; }
         public int Quantity { get; set; }
+    
+        public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
