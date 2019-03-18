@@ -167,6 +167,9 @@ C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\bin\Microsoft
 C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.csprojResolveAssemblyReference.cache
 C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.dll
 C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.pdb
+C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\bin\System.Data.SQLite.dll.config
+C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.csprojAssemblyReference.cache
+C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.csproj.CoreCompileInputs.cache
+C:\Users\btkt_\Documents\Git\LisaStore\QuanLyBanHang\QuanLyBanHang\obj\Debug\QuanLyBanHang.csproj.CopyComplete
