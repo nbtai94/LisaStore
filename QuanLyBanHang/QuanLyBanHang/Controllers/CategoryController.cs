@@ -79,7 +79,7 @@ namespace QuanLyBanHang.Controllers
 
         public ActionResult List()
         {
-           var  lst = _db.Categories.ToList();
+            List<Category> lst = _db.Categories.ToList();
             return PartialView("ListPartial",lst);
         }
 
